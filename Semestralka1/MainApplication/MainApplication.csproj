@@ -67,6 +67,15 @@
     <Compile Include="Windows\AddCadastralForm.xaml.cs">
       <DependentUpon>AddCadastralForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddCitizenForm.xaml.cs">
+      <DependentUpon>AddCitizenForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddPropertyForm.xaml.cs">
+      <DependentUpon>AddPropertyForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddPropertyListForm.xaml.cs">
+      <DependentUpon>AddPropertyListForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -101,6 +110,18 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Windows\AddCadastralForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddCitizenForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddPropertyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddPropertyListForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

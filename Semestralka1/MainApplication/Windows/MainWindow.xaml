@@ -6,17 +6,83 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="345*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="Auto" Grid.Row="0" Grid.Column="0">
+        <Menu x:Name="Menu" HorizontalAlignment="Left" Width="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
             <MenuItem Header="Cadastral areas" Height="26" Width="Auto">
                 <MenuItem Header="Add cadastral area" Click="AddCadastralArea"/>
             </MenuItem>
             <MenuItem Header="Citizens" Height="26" Width="Auto">
-                <MenuItem Header="Add citizen" Click="AddCitizen"/>
+                <MenuItem Header="Add citizen" Click="AddCitizen" />
+            </MenuItem>
+            <MenuItem Header="Property Lists" Height="26" Width="Auto">
+                <MenuItem Header="Add Property list" Click="ViewAllCadastrals"/>
+            </MenuItem>
+            <MenuItem Header="Properties" Height="26" Width="Auto">
+                <MenuItem Header="Add Property" Click="AddPropertyToCadastralAndList"/>
             </MenuItem>
         </Menu>
+        <StackPanel x:Name="StackPanelCadastrals"  HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0"  Visibility="Hidden">
+            <Label Content="Choose cadastral for your property list" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <DataGrid x:Name="DataGridCadastrals" IsReadOnly="True" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CadastralId}" Header="Cadastral id"/>
+                    <DataGridTextColumn Binding="{Binding CadastralName}" Header="Cadastral name"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="AddPropertyListToCadastral">Add here</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Click="HideCadastralList">Close</Button>
+        </StackPanel>
+
+        <StackPanel x:Name="StackPanelCadastralsForProperties"  HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0" Visibility="Hidden">
+            <Label Content="Choose cadastral for your property" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <DataGrid x:Name="DataGridCadastralsForProperties" IsReadOnly="True" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CadastralId}" Header="Cadastral id"/>
+                    <DataGridTextColumn Binding="{Binding CadastralName}" Header="Cadastral name"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="ViewPropertyListsInCadastral">Choose</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Click="HideCadastralListForProperty">Close</Button>
+        </StackPanel>
+
+        <StackPanel x:Name="StackPanelPropertyLists"  HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="1" Visibility="Hidden">
+            <Label Content="Choose property list for property" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <DataGrid x:Name="DataGridPropertyLists" IsReadOnly="True" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding PropertyListId}" Header="Cadastral id"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="AddProperty">Add here</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Click="HidePropertyList">Close</Button>
+        </StackPanel>
     </Grid>
 </Window>

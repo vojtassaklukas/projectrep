@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Structures
 {
-    public class AvlTree<TK, TD> : IEnumerable, IEnumerable<AvlTree<TK,TD>.Node>
+    public class AvlTree<TK, TD> : IEnumerable<AvlTree<TK,TD>.Node>, IEnumerable<TD>
         where TK : IComparable
     {
         private Node _root;
@@ -749,6 +749,35 @@ namespace Structures
             current.Data = largestKeyNode.Data;
         }
 
+        public IEnumerable<TD> GetDataEnumerator()
+        {
+            var current = _root;
+            MyArray<Node> list = new MyArray<Node>();
+            bool end = false;
+            while (end == false)
+            {
+                if (current != null)
+                {
+                    list.Add(current);
+                    current = current.LeftChild;
+                }
+                else
+                {
+                    if (!list.IsEmpty())
+                    {
+                        current = list.Get(list.Count() - 1);
+                        list.Remove(list.Count() - 1);
+                        yield return current.Data;
+                        current = current.RightChild;
+                    }
+                    else
+                    {
+                        end = true;
+                    }
+                }
+            }
+        }
+
         public IEnumerator<Node> GetEnumerator()
         {
             var current = _root;
@@ -783,9 +812,14 @@ namespace Structures
             return GetEnumerator();
         }
 
+        IEnumerator<TD> IEnumerable<TD>.GetEnumerator()
+        {
+            return (IEnumerator<TD>) GetDataEnumerator();
+        }
+
         public void CheckDepth()
         {
-            foreach (var node in this)
+            foreach (Node node in this)
             {
                 int maxlh = CountHeight(node?.LeftChild);
                 int maxrh = CountHeight(node?.RightChild);

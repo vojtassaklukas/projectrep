@@ -12,14 +12,14 @@ namespace MainApplication.Classes
         public Cadastral Cadastral { get; set; }
         public int PropertyListId { get; set; }
         public AvlTree<int, Property> Properties { get; set; }
-        public AvlTree<string, Citizen> Owners { get; set; }
+        public AvlTree<double, Citizen> Owners { get; set; }
 
         public PropertyList(Cadastral cadastral, int propertyListId)
         {
             Cadastral = cadastral;
             PropertyListId = propertyListId;
             Properties = new AvlTree<int, Property>();
-            Owners = new AvlTree<string, Citizen>();
+            Owners = new AvlTree<double, Citizen>();
         }
     }
 }
