@@ -1,0 +1,22 @@
+﻿<Window x:Class="MainApplication.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="Auto" Grid.Row="0" Grid.Column="0">
+            <MenuItem Header="Cadastral areas" Height="26" Width="Auto">
+                <MenuItem Header="Add cadastral area" Click="AddCadastralArea"/>
+            </MenuItem>
+            <MenuItem Header="Citizens" Height="26" Width="Auto">
+                <MenuItem Header="Add citizen" Click="AddCitizen"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>

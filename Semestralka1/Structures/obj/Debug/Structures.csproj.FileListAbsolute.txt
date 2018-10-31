@@ -1,1 +1,6 @@
 C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\Structures\bin\Debug\Structures.exe.config
+C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\Structures\bin\Debug\Structures.exe
+C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\Structures\bin\Debug\Structures.pdb
+C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\Structures\obj\Debug\Structures.exe
+C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\Structures\obj\Debug\Structures.pdb
+C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\Structures\obj\Debug\Structures.csprojResolveAssemblyReference.cache

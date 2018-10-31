@@ -1,0 +1,31 @@
+﻿<Window x:Class="MainApplication.Windows.AddCitizen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Add Citizen" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Full name:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" />
+        <Label Content="EAN: " HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" />
+        <Label Content="Birth Date:" HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" />
+        <Label Content="Property id:" HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" />
+        <TextBox x:Name="FullName" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="0" Grid.Column="1" />
+        <TextBox x:Name="EAN" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="1" />
+        <DatePicker x:Name="BirthDate" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Grid.Row="2" VerticalAlignment="Center" Width="120" />
+        <TextBox x:Name="PropertyId" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="3" Grid.Column="1" />
+        <Button Content="Add" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Column="0" Grid.Row="4" Click="Add_Citizen" />
+        <Button Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Column="1" Grid.Row="4" Click="Cancel" />
+    </Grid>
+</Window>
