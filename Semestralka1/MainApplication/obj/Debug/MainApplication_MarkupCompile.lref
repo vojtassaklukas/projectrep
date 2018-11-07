@@ -1,7 +1,32 @@
 ﻿
 
 FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AddCadastralForm.xaml;;
-FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AddPropertyListForm.xaml;;
-FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AddPropertyForm.xaml;;
 FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AddCitizenForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AddPropertyForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AssignExistingOwnershipInterest.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AssignOwnershipInterest.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AssignPermanentResidence.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\AssignResidenceOwnership.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\CitizenOwnershipsInterests.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\DeleteCadastralAreaForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\DeletePropertyForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\DeletePropertyListForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\FindOwnerPropertiesCadastralForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\FindOwnerPropertiesForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\FindPropertyByCadastralName.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\FindPropertyCadastralIdForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\FindPropertyListById.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\FindPropertyListByName.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\GenerateDataForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowCadastralAreas.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowCitizensPermanentResidence.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowOwnerPropertiesCadastral.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowPermanentResidence.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowProperties.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowPropertiesForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowPropertyById.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowPropertyListById.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowPropertyPermanentPeople.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\ShowpropertyPermanentPeopleForm.xaml;;
+FC:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\Windows\UnassignOwnershipInterest.xaml;;
 

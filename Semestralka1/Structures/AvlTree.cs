@@ -778,6 +778,29 @@ namespace Structures
             }
         }
 
+        public IEnumerable<TD> GetLevelEnumerator()
+        {
+            if (_root != null)
+            {
+                LinkedList<Node> queue = new LinkedList<Node>();
+                queue.AddLast(_root);
+                while (queue.Count != 0)
+                {
+                    LinkedListNode<Node> temp = queue.First;
+                    queue.RemoveFirst();
+                    yield return temp.Value.Data;
+                    if (temp.Value.LeftChild != null)
+                    {
+                        queue.AddLast(temp.Value.LeftChild);
+                    }
+                    if (temp.Value.RightChild != null)
+                    {
+                        queue.AddLast(temp.Value.RightChild);
+                    }
+                }
+            }         
+        }
+
         public IEnumerator<Node> GetEnumerator()
         {
             var current = _root;
@@ -839,6 +862,18 @@ namespace Structures
             else
             {
                 return 1 + Math.Max(CountHeight(node.LeftChild), CountHeight(node.RightChild));
+            }
+        }
+
+        public bool IsEmpty()
+        {
+            if (_root == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

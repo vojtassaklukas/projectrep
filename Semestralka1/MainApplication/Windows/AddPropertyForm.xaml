@@ -11,19 +11,16 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="IdLabel" Content="Register number:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <TextBox x:Name="RegisterNumber" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="0" />
-        <Label x:Name="AdressLabel" Content="Property adress:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
-        <TextBox x:Name="PropertyAdress" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" />
-        <Label x:Name="DescriptionLabel" Content="Property Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
-        <TextBox x:Name="PropertyDescription" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="2" />
-        <Button x:Name="AddcadastralArea" Content="Add" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Width="75" Click="AddProperty_OnClick"/>
-        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="Cancel_OnClick"/>
+        <Label x:Name="AdressLabel" Content="Property adress:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+        <TextBox x:Name="PropertyAdress" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="0" />
+        <Label x:Name="DescriptionLabel" Content="Property Description:" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+        <TextBox x:Name="PropertyDescription" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="10" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" />
+        <Button x:Name="AddcadastralArea" Content="Add" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Width="75" Click="AddProperty_OnClick"/>
+        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="75" Click="Cancel_OnClick"/>
     </Grid>
 </Window>

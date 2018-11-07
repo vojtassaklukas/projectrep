@@ -58,6 +58,17 @@ namespace Structures
                 Console.WriteLine("Test " + j + ". finished.");
             }
 
+            /*tree = new AvlTree<int, int>();
+            for (int i = 0; i < 10; i++)
+            {
+                tree.Insert(i, i);
+            }
+
+            foreach (int cislo in tree.GetLevelEnumerator())
+            {
+                Console.WriteLine(cislo);
+            }*/
+
             /*Random randomKey = new Random(8);
             Random randomOperation = new Random(8);
             Random randomDeleted = new Random(8);

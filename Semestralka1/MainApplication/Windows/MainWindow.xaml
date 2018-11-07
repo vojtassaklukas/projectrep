@@ -4,12 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
+        Title="MainWindow" Height="600" Width="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="26*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="345*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="251*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -18,21 +19,45 @@
         <Menu x:Name="Menu" HorizontalAlignment="Left" Width="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top">
             <MenuItem Header="Cadastral areas" Height="26" Width="Auto">
                 <MenuItem Header="Add cadastral area" Click="AddCadastralArea"/>
+                <MenuItem Header="Show areas by name" Click="ShowAreasByName_Click"/>
+                <MenuItem Header="Show properties" Click="ShowProperties_Click"/>
+                <MenuItem Header="Delete cadastral area" Click="DeleteCadastralArea_Click"/>
             </MenuItem>
             <MenuItem Header="Citizens" Height="26" Width="Auto">
                 <MenuItem Header="Add citizen" Click="AddCitizen" />
+                <MenuItem Header="Assign permanent residence" Click="AssignPermanentResidence_Click"/>
+                <MenuItem Header="Show citizens permanent residence" Click="ShowCitizensPermanentResidence_Click"/>
+                <MenuItem Header="Show properties in cadastral" Click="ShowPropertiesInCadastral_Click"/>
+                <MenuItem Header="Show all properties" Click="ShowAllProperties_Click"/>
             </MenuItem>
             <MenuItem Header="Property Lists" Height="26" Width="Auto">
                 <MenuItem Header="Add Property list" Click="ViewAllCadastrals"/>
+                <MenuItem Header="Add new ownership" Click="AssignOwnershipInterest_Click"/>
+                <MenuItem Header="Assign ownership interests" Click="AssignExistingOwnershipInterest_Click"/>
+                <MenuItem Header="Unassign existing ownership" Click="UnassignExistingOwnership_Click"/>
+                <MenuItem Header="Find property list by cadastral id" Click="FindPropertyListById_Click"/>
+                <MenuItem Header="Find property list by cadastral name" Click="FindPropertyListByName_Click"/>
+                <MenuItem Header="Delete property list" Click="DeletePropertyList_Click"/>
             </MenuItem>
             <MenuItem Header="Properties" Height="26" Width="Auto">
                 <MenuItem Header="Add Property" Click="AddPropertyToCadastralAndList"/>
+                <MenuItem Header="Assign owner" Click="AssignResidenceOwnership_Click"/>
+                <MenuItem Header="Find property by cadastral id" Click="FindPropertyById_Click"/>
+                <MenuItem Header="Find property by cadastral name" Click="FindPropertyByName_Click"/>
+                <MenuItem Header="Show property permanent people" Click="ShowPropertyPErmanentPeople_Click"/>
+                <MenuItem Header="Delete property" Click="DeleteProperty_Click"/>
+            </MenuItem>
+            <MenuItem Header="Data" Height="26" Width="Auto">
+                <MenuItem Header="Generate" Click="GenerateData_Click"/>
+                <MenuItem Header="Save to file" Click="SaveDataToFile_Click"/>
+                <MenuItem Header="Load from file" Click="LoadDataFromFile_Click"/>
             </MenuItem>
         </Menu>
         <StackPanel x:Name="StackPanelCadastrals"  HorizontalAlignment="Left" 
                      VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0"  Visibility="Hidden">
             <Label Content="Choose cadastral for your property list" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="DataGridCadastrals" IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid x:Name="DataGridCadastrals" IsReadOnly="True" CanUserAddRows="False" ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CadastralId}" Header="Cadastral id"/>
                     <DataGridTextColumn Binding="{Binding CadastralName}" Header="Cadastral name"/>
@@ -49,9 +74,10 @@
         </StackPanel>
 
         <StackPanel x:Name="StackPanelCadastralsForProperties"  HorizontalAlignment="Left" 
-                    VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0" Visibility="Hidden">
+                    VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0" Visibility="Hidden" Margin="0,0.2,0,0">
             <Label Content="Choose cadastral for your property" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="DataGridCadastralsForProperties" IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid x:Name="DataGridCadastralsForProperties" IsReadOnly="True" CanUserAddRows="False" ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding CadastralId}" Header="Cadastral id"/>
                     <DataGridTextColumn Binding="{Binding CadastralName}" Header="Cadastral name"/>
@@ -68,11 +94,12 @@
         </StackPanel>
 
         <StackPanel x:Name="StackPanelPropertyLists"  HorizontalAlignment="Left" 
-                    VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="1" Visibility="Hidden">
+                    VerticalAlignment="Top" Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="1" Visibility="Hidden" Margin="0,0.2,0,0">
             <Label Content="Choose property list for property" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <DataGrid x:Name="DataGridPropertyLists" IsReadOnly="True" CanUserAddRows="False">
+            <DataGrid x:Name="DataGridPropertyLists" IsReadOnly="True" CanUserAddRows="False" ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" Height="300">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding PropertyListId}" Header="Cadastral id"/>
+                    <DataGridTextColumn Binding="{Binding PropertyListId}" Header="Property list id"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

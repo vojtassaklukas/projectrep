@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Xml.Schema;
 using MainApplication.Classes;
+using Structures;
 
 namespace MainApplication.Windows
 {
@@ -27,38 +29,34 @@ namespace MainApplication.Windows
 
         private void AddProperty_OnClick(object sender, RoutedEventArgs e)
         {
-            int registerNumber;
-
-            if (Int32.TryParse(CheckTextBox(RegisterNumber.Text), out registerNumber))
+            Property property = new Property(State.Instance.PropertyNumerator, CheckTextBox(PropertyAdress.Text), CheckTextBox(PropertyDescription.Text));
+            if (warning != true)
             {
-                Property property = new Property(registerNumber, CheckTextBox(PropertyAdress.Text), CheckTextBox(PropertyDescription.Text));
-                if (warning != true)
+                usedCadastral.CadastralProperties.Insert(State.Instance.PropertyNumerator, property);
+
+                foreach (OwnershipInterest o in usedPropertyList.Owners.GetDataEnumerator())
                 {
-                    if (!usedPropertyList.Properties.Insert(registerNumber, property))
-                    {
-                        MessageBox.Show("Property register number in this property list already in use.", "Alert", MessageBoxButton.OK);
-                    }
-                    else
-                    {
-                        if (!usedCadastral.CadastralProperties.Insert(registerNumber,property))
-                        {
-                            usedPropertyList.Properties.Delete(registerNumber);
-                            MessageBox.Show("Property register number in this cadastral already in use.", "Alert", MessageBoxButton.OK);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Property added.", "Alert", MessageBoxButton.OK);
-                            Close();
-                        }
-                    }
+                    o.Citizen.AllProperties.Insert(property.PropertyId, property); // pridam na list všetkych properties
 
+                    AvlTree<int, Property> foundTree = o.Citizen.PropertiesByCadastral.Find(usedCadastral.CadastralId); // zistim ci mam uz strom na property s takym catastrom
+                    if (foundTree != null) // ak hej
+                    {
+                        foundTree.Insert(property.PropertyId, property); // pridam tam tu property
+                    }
+                    else // ak nie
+                    {
+                        o.Citizen.PropertiesByCadastral.Insert(usedCadastral.CadastralId, new AvlTree<int, Property>()); // tak najprv spravim novy strom
+                        o.Citizen.PropertiesByCadastral.Find(usedCadastral.CadastralId).Insert(property.PropertyId, property); // potom ho najdem a vlozim do neho
+                    }
                 }
-                warning = false;
+
+                usedPropertyList.Properties.Insert(property.PropertyId, property);
+                property.PropertyList = usedPropertyList;
+                State.Instance.PropertyNumerator++;
+                MessageBox.Show("Property added.", "Alert", MessageBoxButton.OK);
+                Close();
             }
-            else
-            {
-                MessageBox.Show("Property list id must be a number.", "Alert", MessageBoxButton.OK);
-            }
+            warning = false;
         }
 
         private string CheckTextBox(string text)

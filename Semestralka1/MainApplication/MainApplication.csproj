@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,9 +62,13 @@
     </Compile>
     <Compile Include="Classes\Cadastral.cs" />
     <Compile Include="Classes\Citizen.cs" />
+    <Compile Include="Classes\OwnershipInterest.cs" />
     <Compile Include="Classes\Property.cs" />
     <Compile Include="Classes\PropertyList.cs" />
     <Compile Include="Classes\State.cs" />
+    <Compile Include="Windows\AssignExistingOwnershipInterest.xaml.cs">
+      <DependentUpon>AssignExistingOwnershipInterest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddCadastralForm.xaml.cs">
       <DependentUpon>AddCadastralForm.xaml</DependentUpon>
     </Compile>
@@ -73,11 +78,83 @@
     <Compile Include="Windows\AddPropertyForm.xaml.cs">
       <DependentUpon>AddPropertyForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\AddPropertyListForm.xaml.cs">
-      <DependentUpon>AddPropertyListForm.xaml</DependentUpon>
+    <Compile Include="Windows\AssignOwnershipInterest.xaml.cs">
+      <DependentUpon>AssignOwnershipInterest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AssignPermanentResidence.xaml.cs">
+      <DependentUpon>AssignPermanentResidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AssignResidenceOwnership.xaml.cs">
+      <DependentUpon>AssignResidenceOwnership.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CitizenOwnershipsInterests.xaml.cs">
+      <DependentUpon>CitizenOwnershipsInterests.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DeleteCadastralAreaForm.xaml.cs">
+      <DependentUpon>DeleteCadastralAreaForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DeletePropertyForm.xaml.cs">
+      <DependentUpon>DeletePropertyForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DeletePropertyListForm.xaml.cs">
+      <DependentUpon>DeletePropertyListForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FindOwnerPropertiesCadastralForm.xaml.cs">
+      <DependentUpon>FindOwnerPropertiesCadastralForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FindOwnerPropertiesForm.xaml.cs">
+      <DependentUpon>FindOwnerPropertiesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FindPropertyByCadastralName.xaml.cs">
+      <DependentUpon>FindPropertyByCadastralName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FindPropertyCadastralIdForm.xaml.cs">
+      <DependentUpon>FindPropertyCadastralIdForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FindPropertyListById.xaml.cs">
+      <DependentUpon>FindPropertyListById.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FindPropertyListByName.xaml.cs">
+      <DependentUpon>FindPropertyListByName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GenerateDataForm.xaml.cs">
+      <DependentUpon>GenerateDataForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowCadastralAreas.xaml.cs">
+      <DependentUpon>ShowCadastralAreas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowCitizensPermanentResidence.xaml.cs">
+      <DependentUpon>ShowCitizensPermanentResidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowOwnerPropertiesCadastral.xaml.cs">
+      <DependentUpon>ShowOwnerPropertiesCadastral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowPermanentResidence.xaml.cs">
+      <DependentUpon>ShowPermanentResidence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowProperties.xaml.cs">
+      <DependentUpon>ShowProperties.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowPropertiesForm.xaml.cs">
+      <DependentUpon>ShowPropertiesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowPropertyById.xaml.cs">
+      <DependentUpon>ShowPropertyById.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowPropertyListById.xaml.cs">
+      <DependentUpon>ShowPropertyListById.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowPropertyPermanentPeople.xaml.cs">
+      <DependentUpon>ShowPropertyPermanentPeople.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ShowpropertyPermanentPeopleForm.xaml.cs">
+      <DependentUpon>ShowpropertyPermanentPeopleForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UnassignOwnershipInterest.xaml.cs">
+      <DependentUpon>UnassignOwnershipInterest.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -121,11 +198,111 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\AddPropertyListForm.xaml">
+    <Page Include="Windows\AssignExistingOwnershipInterest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AssignOwnershipInterest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AssignPermanentResidence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AssignResidenceOwnership.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CitizenOwnershipsInterests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DeleteCadastralAreaForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DeletePropertyForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DeletePropertyListForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FindOwnerPropertiesCadastralForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FindOwnerPropertiesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FindPropertyByCadastralName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FindPropertyCadastralIdForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FindPropertyListById.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\FindPropertyListByName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GenerateDataForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowCadastralAreas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowCitizensPermanentResidence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowOwnerPropertiesCadastral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowPermanentResidence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowProperties.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowPropertiesForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowPropertyById.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowPropertyListById.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowPropertyPermanentPeople.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ShowpropertyPermanentPeopleForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UnassignOwnershipInterest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

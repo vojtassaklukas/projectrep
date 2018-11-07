@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Lukáš\Desktop\udajovky2\Semestralka1\MainApplication\App.xaml
-52140564725
+30-1718315122
 
-18-744616639
-14113837908
-Windows\AddCadastralForm.xaml;Windows\AddCitizenForm.xaml;Windows\AddPropertyForm.xaml;Windows\AddPropertyListForm.xaml;Windows\MainWindow.xaml;
+441695261980
+15-26620856
+Windows\AddCadastralForm.xaml;Windows\AddCitizenForm.xaml;Windows\AddPropertyForm.xaml;Windows\AssignExistingOwnershipInterest.xaml;Windows\AssignOwnershipInterest.xaml;Windows\AssignPermanentResidence.xaml;Windows\AssignResidenceOwnership.xaml;Windows\CitizenOwnershipsInterests.xaml;Windows\DeleteCadastralAreaForm.xaml;Windows\DeletePropertyForm.xaml;Windows\DeletePropertyListForm.xaml;Windows\FindOwnerPropertiesCadastralForm.xaml;Windows\FindOwnerPropertiesForm.xaml;Windows\FindPropertyByCadastralName.xaml;Windows\FindPropertyCadastralIdForm.xaml;Windows\FindPropertyListById.xaml;Windows\FindPropertyListByName.xaml;Windows\GenerateDataForm.xaml;Windows\MainWindow.xaml;Windows\ShowCadastralAreas.xaml;Windows\ShowCitizensPermanentResidence.xaml;Windows\ShowOwnerPropertiesCadastral.xaml;Windows\ShowPermanentResidence.xaml;Windows\ShowProperties.xaml;Windows\ShowPropertiesForm.xaml;Windows\ShowPropertyById.xaml;Windows\ShowPropertyListById.xaml;Windows\ShowPropertyPermanentPeople.xaml;Windows\ShowpropertyPermanentPeopleForm.xaml;Windows\UnassignOwnershipInterest.xaml;
 
 False
 

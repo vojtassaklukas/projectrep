@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Structures;
+﻿using Structures;
 
 namespace MainApplication.Classes
 {
@@ -12,14 +7,14 @@ namespace MainApplication.Classes
         public Cadastral Cadastral { get; set; }
         public int PropertyListId { get; set; }
         public AvlTree<int, Property> Properties { get; set; }
-        public AvlTree<double, Citizen> Owners { get; set; }
+        public AvlTree<string, OwnershipInterest> Owners { get; set; }
 
         public PropertyList(Cadastral cadastral, int propertyListId)
         {
             Cadastral = cadastral;
             PropertyListId = propertyListId;
             Properties = new AvlTree<int, Property>();
-            Owners = new AvlTree<double, Citizen>();
+            Owners = new AvlTree<string, OwnershipInterest>();
         }
     }
 }

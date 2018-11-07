@@ -19,38 +19,25 @@ namespace MainApplication.Windows
 
         private void AddcadastralArea_OnClick(object sender, RoutedEventArgs e)
         {
-            int id;
-
-            if (Int32.TryParse(CheckTextBox(CadastralId.Text), out id))
+            foreach (Cadastral c in State.Instance.CadastralAreas.GetDataEnumerator())
             {
-                foreach (Cadastral c in State.Instance.CadastralAreas.GetDataEnumerator())
+                if (c.CadastralName == CheckTextBox(CadastralName.Text))
                 {
-                    if (c.CadastralName == CheckTextBox(CadastralName.Text))
-                    {
-                        warning = true;
-                        MessageBox.Show("Cadastral area name already in use.", "Alert", MessageBoxButton.OK);
-                    }
+                    warning = true;
+                    MessageBox.Show("Cadastral area name already in use.", "Alert", MessageBoxButton.OK);
                 }
+            }
 
-                var cadastral = new Cadastral(id, CheckTextBox(CadastralName.Text));
-                if (warning != true)
-                {
-                    if (State.Instance.CadastralAreas.Insert(id, cadastral))
-                    {
-                        MessageBox.Show("Cadastral area added.", "Alert", MessageBoxButton.OK);
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cadastral area id already in use.", "Alert", MessageBoxButton.OK);
-                    }
-                }
-                warning = false;
-            }
-            else
+            var cadastral = new Cadastral(State.Instance.CadastralNumerator, CheckTextBox(CadastralName.Text));
+            if (warning != true)
             {
-                MessageBox.Show("Cadastral area id must be a number.", "Alert", MessageBoxButton.OK);
+                State.Instance.CadastralAreas.Insert(State.Instance.CadastralNumerator, cadastral);
+                State.Instance.CadastralAreasByName.Insert(CadastralName.Text, cadastral); // inertion by name
+                State.Instance.CadastralNumerator++;
+                MessageBox.Show("Cadastral area added.", "Alert", MessageBoxButton.OK);
+                Close();
             }
+            warning = false;
         }
 
         private void Cancel_OnClick(object sender, RoutedEventArgs e)
