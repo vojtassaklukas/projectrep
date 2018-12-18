@@ -34,17 +34,10 @@ namespace MainApplication.Windows
                 Interests = new ObservableCollection<int>();
                 if (citizen != null)
                 {
-                    var showProperties = new ShowOwnerPropertiesCadastral();
-                    showProperties.Show();
-                    showProperties.CitizenProperties.ItemsSource = Properties;
-                    showProperties.PropertyInterests.ItemsSource = Interests;
+                    citizen.PropertiesFound += OnPropertiesFound;
 
-                    foreach (Property p in citizen.AllProperties.GetDataEnumerator())
-                    {
-                        Properties.Add(p);
-                        int interest = p.PropertyList.Owners.Find(citizen.EAN).Interest;
-                        Interests.Add(interest);
-                    }
+                    citizen.FindCitizenProperties();
+
                     Close();
                 }
                 else
@@ -64,6 +57,14 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnPropertiesFound(object source, PropertiesFoundEventArgs e)
+        {
+            var showProperties = new ShowOwnerPropertiesCadastral();
+            showProperties.Show();
+            showProperties.CitizenProperties.ItemsSource = e.Properties;
+            showProperties.PropertyInterests.ItemsSource = e.Interests;
         }
     }
 }

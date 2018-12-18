@@ -11,11 +11,6 @@ namespace MainApplication.Windows
     public partial class FindPropertyCadastralIdForm : Window
     {
         private bool warning = false;
-        public Property Property { get; set; }
-        public ObservableCollection<Citizen> PermanentPeople { get; set; }
-        public PropertyList PropertyList { get; set; }
-        public ObservableCollection<Property> PropertyListProperties { get; set; }
-        public ObservableCollection<OwnershipInterest> PropertyListOwners { get; set; }
 
         public FindPropertyCadastralIdForm()
         {
@@ -41,39 +36,12 @@ namespace MainApplication.Windows
                     {
                         if (Int32.TryParse(CheckTextBox(PropertyId.Text), out propertyId))
                         {
-                            PermanentPeople = new ObservableCollection<Citizen>();
-                            PropertyListProperties = new ObservableCollection<Property>();
-                            PropertyListOwners = new ObservableCollection<OwnershipInterest>();
                             Property property = cadastral.CadastralProperties.Find(propertyId);
                             if (property != null)
                             {
-                                var showPropertyfound = new ShowPropertyById();
-                                showPropertyfound.Show();
+                                property.PropertyFound += OnPropertyFound;
 
-                                foreach (Citizen c in property.PermanentPeople.GetDataEnumerator())
-                                {
-                                    PermanentPeople.Add(c);
-                                }
-
-                                foreach (Property p in property.PropertyList.Properties.GetDataEnumerator())
-                                {
-                                    PropertyListProperties.Add(p);
-                                }
-
-                                foreach (OwnershipInterest o in property.PropertyList.Owners.GetDataEnumerator())
-                                {
-                                    PropertyListOwners.Add(o);
-                                }
-
-                                Property = property;
-                                PropertyList = property.PropertyList;
-
-                                showPropertyfound.PropertyListInformation.Items.Add(PropertyList);
-                                showPropertyfound.PropertyInformation.Items.Add(property);
-
-                                showPropertyfound.PermanentsInformation.ItemsSource = PermanentPeople;
-                                showPropertyfound.PropertyListProperties.ItemsSource = PropertyListProperties;
-                                showPropertyfound.PropertyListOwners.ItemsSource = PropertyListOwners;
+                                property.FindById();
 
                                 Close();
                             }
@@ -108,6 +76,19 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnPropertyFound(object source, PropertyFoundEventArgs e)
+        {
+            var showPropertyfound = new ShowPropertyById();
+            showPropertyfound.Show();
+
+            showPropertyfound.PropertyListInformation.Items.Add(e.PropertyList);
+            showPropertyfound.PropertyInformation.Items.Add(e.Property);
+
+            showPropertyfound.PermanentsInformation.ItemsSource = e.PermanentPeople;
+            showPropertyfound.PropertyListProperties.ItemsSource = e.PropertyListProperties;
+            showPropertyfound.PropertyListOwners.ItemsSource = e.PropertyListOwners;
         }
     }
 }

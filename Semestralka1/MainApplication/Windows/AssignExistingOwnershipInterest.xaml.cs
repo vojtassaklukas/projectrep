@@ -11,7 +11,6 @@ namespace MainApplication.Windows
     public partial class AssignExistingOwnershipInterest : Window
     {
         private bool warning;
-        public ObservableCollection<OwnershipInterest> Owners { get; set; }
 
         public AssignExistingOwnershipInterest()
         {
@@ -27,6 +26,7 @@ namespace MainApplication.Windows
         {
             int cadastalId;
             int propertyListId;
+
             warning = false;
 
             if (Int32.TryParse(CheckTextBox(CadastralId.Text), out cadastalId))
@@ -37,28 +37,14 @@ namespace MainApplication.Windows
                     if (Int32.TryParse(CheckTextBox(PropertyListId.Text), out propertyListId))
                     {
                         PropertyList propertyList = cadastral.PropertyLists.Find(propertyListId);
+
                         if (propertyList != null)
                         {
+                            propertyList.OwnersFound += OnOwnersFound; // zaregistrovanie delegata
+
                             if (!warning)
                             {
-                                Owners = new ObservableCollection<OwnershipInterest>();
-                                foreach (OwnershipInterest o in propertyList.Owners.GetDataEnumerator())
-                                {
-                                    Owners.Add(o);
-                                }
-                                if (Owners.Count != 0)
-                                {
-                                    var citizenOwnershipsInterestsForm = new CitizenOwnershipsInterests();
-                                    citizenOwnershipsInterestsForm.Show();
-
-                                    citizenOwnershipsInterestsForm.DataGridOwners.ItemsSource = Owners;
-
-                                    Close();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("No ownership data found", "Warning", MessageBoxButton.OK);
-                                }
+                                propertyList.AssignExistingOi();
                             }
                         }
                         else
@@ -90,6 +76,15 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnOwnersFound(object source, OwnersFoundEventArgs e)
+        {
+            var citizenOwnershipsInterestsForm = new CitizenOwnershipsInterests();
+            citizenOwnershipsInterestsForm.Show();
+
+            citizenOwnershipsInterestsForm.DataGridOwners.ItemsSource = e.OwnersCollection;
+            Close();
         }
     }
 }

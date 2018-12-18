@@ -43,20 +43,8 @@ namespace MainApplication.Windows
                                     Property property = propertyList.Properties.Find(propertyId);
                                     if (property != null)
                                     {
-                                        foreach (Citizen c in property.PermanentPeople.GetDataEnumerator()) // všetkym z nej odstranim trvaly pobyt
-                                        {
-                                            c.PermanentResidance = null;
-                                        }
-
-                                        foreach (OwnershipInterest oi in propertyList.Owners.GetDataEnumerator()) // zmazať ownerovi z dvoch stromov
-                                        {
-                                            oi.Citizen.AllProperties.Delete(property.PropertyId);
-                                            oi.Citizen.PropertiesByCadastral.Find(cadastralId).Delete(propertyId);
-                                        }
-                                        propertyList.Properties.Delete(property.PropertyId);
-                                        cadastral.CadastralProperties.Delete(property.PropertyId);
+                                        property.DeleteProperty(propertyList,cadastralId,propertyId,cadastral);
                                         Close();
-
                                         MessageBox.Show("Property removed", "Warning", MessageBoxButton.OK);
                                     }
                                     else

@@ -22,7 +22,6 @@ namespace MainApplication.Windows
     public partial class ShowPropertiesForm : Window
     {
         private bool warning = false;
-        public ObservableCollection<Property> Properties { get; set; }
         public ShowPropertiesForm()
         {
             InitializeComponent();
@@ -42,15 +41,9 @@ namespace MainApplication.Windows
                 Cadastral cadastral = State.Instance.CadastralAreasByName.Find(cadastralName);
                 if (cadastral != null)
                 {
-                    Properties = new ObservableCollection<Property>();
-                    var showProperties = new ShowProperties();
-                    showProperties.Show();
+                    cadastral.CadastralPropertiesFound += OnPropertiesFound;
 
-                    foreach (Property p in cadastral.CadastralProperties.GetDataEnumerator())
-                    {
-                        Properties.Add(p);
-                    }
-                    showProperties.CadastralProperties.ItemsSource = Properties;
+                    cadastral.ShowProperties();
 
                     Close();
                 }
@@ -70,6 +63,13 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnPropertiesFound(object source, CadastralPropertiesFoundEventArgs e)
+        {
+            var showProperties = new ShowProperties();
+            showProperties.Show();
+            showProperties.CadastralProperties.ItemsSource = e.Properties;
         }
     }
 }

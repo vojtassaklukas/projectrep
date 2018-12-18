@@ -40,28 +40,7 @@ namespace MainApplication.Windows
                             {
                                 foreach (Citizen citizen in State.Instance.Citizens.GetDataEnumerator())
                                 {
-                                    AvlTree<int, Property> foundTreeDeleted = citizen.PropertiesByCadastral.Find(deletedCadastralId);
-                                    if (foundTreeDeleted != null)
-                                    {
-                                        AvlTree<int, Property> foundTreeInserted = citizen.PropertiesByCadastral.Find(InsertedCadastralId);
-
-                                        if (foundTreeInserted == null)
-                                        {
-                                            citizen.PropertiesByCadastral.Insert(InsertedCadastralId,new AvlTree<int, Property>());
-                                        }
-
-                                        foundTreeInserted = citizen.PropertiesByCadastral.Find(InsertedCadastralId);
-
-                                        foreach (Property property in foundTreeDeleted.GetDataEnumerator())
-                                        {
-                                            foundTreeInserted.Insert(property.PropertyId, property);
-                                        }
-
-                                        foreach (Property property in foundTreeDeleted.GetDataEnumerator())
-                                        {
-                                            foundTreeDeleted.Delete(property.PropertyId);
-                                        }
-                                    }
+                                    citizen.DeleteCadastralArea(deletedCadastralId, InsertedCadastralId);                                 
                                 }
 
                                 foreach (PropertyList pl in deleted.PropertyLists.GetDataEnumerator())

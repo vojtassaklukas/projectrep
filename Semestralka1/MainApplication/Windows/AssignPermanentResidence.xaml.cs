@@ -41,21 +41,8 @@ namespace MainApplication.Windows
                             {
                                 if (citizen != null)
                                 {
-                                    if (citizen.PermanentResidance != null)
-                                    {
-                                        citizen.PermanentResidance.PermanentPeople.Delete(Ean.Text); // vymazanie stareho trvaleho pobytu ak nejaky bol
-                                    }                              
-                                    citizen.PermanentResidance = property;
-                                    if (!property.PermanentPeople.Insert(Ean.Text, citizen))
-                                    {
-                                        MessageBox.Show("Citizens permanent residence is already registered", "Warning", MessageBoxButton.OK);
-                                        Close();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Citizen permanent residence assigned", "Warning", MessageBoxButton.OK);
-                                        Close();
-                                    }
+                                    citizen.AssignPermanentRes(Ean.Text, property);
+                                    Close();
                                 }
                                 else
                                 {

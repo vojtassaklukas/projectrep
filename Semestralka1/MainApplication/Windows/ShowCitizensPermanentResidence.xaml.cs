@@ -10,9 +10,7 @@ namespace MainApplication.Windows
     public partial class ShowCitizensPermanentResidence : Window
     {
         private bool warning = false;
-        public Property Property { get; set; }
-        public ObservableCollection<Citizen> PermanentPeople { get; set; }
-        public PropertyList PropertyList { get; set; }
+
         public ShowCitizensPermanentResidence()
         {
             InitializeComponent();
@@ -30,27 +28,14 @@ namespace MainApplication.Windows
             if (!warning)
             {
                 Citizen citizen = State.Instance.Citizens.Find(ean);
-                PermanentPeople = new ObservableCollection<Citizen>();
 
                 if (citizen != null )
                 {
                     if (citizen.PermanentResidance != null)
                     {
-                        var showPermanentResidence = new ShowPermanentResidence();
-                        showPermanentResidence.Show();
+                        citizen.ResidenceFound += OnResidenceFound;
 
-                        foreach (Citizen c in citizen.PermanentResidance.PermanentPeople.GetDataEnumerator())
-                        {
-                            PermanentPeople.Add(c);
-                        }
-
-                        Property = citizen.PermanentResidance;
-                        PropertyList = citizen.PermanentResidance.PropertyList;
-
-                        showPermanentResidence.PropertyListInformation.Items.Add(PropertyList);
-                        showPermanentResidence.PropertyInformation.Items.Add(Property);
-
-                        showPermanentResidence.PermanentsInformation.ItemsSource = PermanentPeople;
+                        citizen.FindPermanentResidence();
 
                         Close();
                     }
@@ -74,6 +59,17 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnResidenceFound(object source, ResidenceFoundEventArgs e)
+        {
+            var showPermanentResidence = new ShowPermanentResidence();
+            showPermanentResidence.Show();
+
+            showPermanentResidence.PropertyListInformation.Items.Add(e.PropertyList);
+            showPermanentResidence.PropertyInformation.Items.Add(e.Property);
+
+            showPermanentResidence.PermanentsInformation.ItemsSource = e.PermanentPeople;
         }
     }
 }

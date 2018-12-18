@@ -23,8 +23,6 @@ namespace MainApplication.Windows
     public partial class FindOwnerPropertiesCadastralForm : Window
     {
         private bool warning = false;
-        public ObservableCollection<Property> Properties { get; set; }
-        public ObservableCollection<int> Interests { get; set; }
 
         public FindOwnerPropertiesCadastralForm()
         {
@@ -49,30 +47,13 @@ namespace MainApplication.Windows
                     if (cadastral != null)
                     {
                         Citizen citizen = State.Instance.Citizens.Find(ean);
-                        Properties = new ObservableCollection<Property>();
-                        Interests = new ObservableCollection<int>();
                         if (citizen != null)
                         {
-                            AvlTree<int, Property> foundcadastral = citizen.PropertiesByCadastral.Find(cadastral.CadastralId);
-                            if (foundcadastral != null) // ak hej
-                            {
-                                var showProperties = new ShowOwnerPropertiesCadastral();
-                                showProperties.Show();
-                                showProperties.CitizenProperties.ItemsSource = Properties;
-                                showProperties.PropertyInterests.ItemsSource = Interests;
+                            citizen.PropertiesFound += OnPropertiesFound;
 
-                                foreach (Property p in foundcadastral.GetDataEnumerator())
-                                {
-                                    Properties.Add(p);
-                                    int interest = p.PropertyList.Owners.Find(citizen.EAN).Interest;
-                                    Interests.Add(interest);
-                                }
-                                Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Citizen has no properties.", "Alert", MessageBoxButton.OK);
-                            }
+                            citizen.FindCitizenPropertiesCadastral(cadastral);
+
+                            Close();
                         }
                         else
                         {
@@ -100,6 +81,14 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnPropertiesFound(object source, PropertiesFoundEventArgs e)
+        {
+            var showProperties = new ShowOwnerPropertiesCadastral();
+            showProperties.Show();
+            showProperties.CitizenProperties.ItemsSource = e.Properties;
+            showProperties.PropertyInterests.ItemsSource = e.Interests;
         }
     }
 }

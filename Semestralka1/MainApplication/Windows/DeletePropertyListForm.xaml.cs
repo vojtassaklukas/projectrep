@@ -48,17 +48,7 @@ namespace MainApplication.Windows
 
                                         if (deleted != null)
                                         {
-                                            foreach (Property p in deleted.Properties.GetDataEnumerator())
-                                            {
-                                                p.PropertyList = inserted;
-                                                inserted.Properties.Insert(p.PropertyId, p);
-                                            }
-
-                                            foreach (OwnershipInterest oi in deleted.Owners.GetDataEnumerator())
-                                            {
-                                                inserted.Owners.Insert(oi.Citizen.EAN, oi);
-                                            }
-
+                                            deleted.DeletePropertyList(inserted);
                                             MessageBox.Show("Property list removed and moved to another", "Warning", MessageBoxButton.OK);
                                             Close();
                                         }

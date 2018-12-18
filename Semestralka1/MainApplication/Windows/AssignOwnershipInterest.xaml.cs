@@ -48,42 +48,11 @@ namespace MainApplication.Windows
                                 {
                                     if (!propertyList.Properties.IsEmpty())
                                     {
-                                        OwnershipInterest ownership = new OwnershipInterest(citizen, 0);
-                                        Owners = new ObservableCollection<OwnershipInterest>();
-                                        if (!propertyList.Owners.Insert(citizen.EAN, ownership))
-                                        {
-                                            MessageBox.Show("Citizen is already an owner", "Warning", MessageBoxButton.OK);
-                                        }
-                                        else
-                                        {
-                                            var citizenOwnershipsInterestsForm = new CitizenOwnershipsInterests();
-                                            citizenOwnershipsInterestsForm.Show();
-                                            foreach (OwnershipInterest o in propertyList.Owners.GetDataEnumerator())
-                                            {
-                                                Owners.Add(o);
-                                            }
+                                        propertyList.OwnersFound += OnOwnersFound;
 
-                                            citizenOwnershipsInterestsForm.DataGridOwners.ItemsSource = Owners;
-
-                                            foreach (Property p in propertyList.Properties.GetDataEnumerator()) // prechadzam cez vsetky property na LV
-                                            {
-                                                citizen.AllProperties.Insert(p.PropertyId, p); // najprv hodim no vsetkych properties
-
-                                                AvlTree<int, Property> foundTree = citizen.PropertiesByCadastral.Find(cadastral.CadastralId); // zistim ci mam uz strom na property s takym catastrom
-                                                if (foundTree != null) // ak hej
-                                                {
-                                                    foundTree.Insert(p.PropertyId, p); // pridam tam tu property
-                                                }
-                                                else // ak nie
-                                                {
-                                                    citizen.PropertiesByCadastral.Insert(cadastral.CadastralId, new AvlTree<int, Property>()); // tak najprv spravim novy strom
-                                                    citizen.PropertiesByCadastral.Find(cadastral.CadastralId).Insert(p.PropertyId, p); // potom ho najdem a vlozim do neho
-                                                }
-                                            }
-
-                                            MessageBox.Show("Property list owner added", "Warning", MessageBoxButton.OK);
-                                            Close();
-                                        }
+                                        propertyList.AssignOi(citizen, cadastral);
+                                        MessageBox.Show("Property list owner added", "Warning", MessageBoxButton.OK);
+                                        Close();                                
                                     }
                                     else
                                     {
@@ -125,6 +94,14 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnOwnersFound(object source, OwnersFoundEventArgs e)
+        {
+            var citizenOwnershipsInterestsForm = new CitizenOwnershipsInterests();
+            citizenOwnershipsInterestsForm.Show();
+
+            citizenOwnershipsInterestsForm.DataGridOwners.ItemsSource = e.OwnersCollection;
         }
     }
 }

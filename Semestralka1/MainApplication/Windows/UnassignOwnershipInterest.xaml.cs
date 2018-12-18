@@ -48,27 +48,10 @@ namespace MainApplication.Windows
 
                                     if (deletedOvnership != null)
                                     {
-                                        propertyList.Owners.Delete(citizen.EAN);
-                                        foreach (OwnershipInterest o in propertyList.Owners.GetDataEnumerator())
-                                        {
-                                            Owners.Add(o);
-                                        }
+                                        propertyList.OwnersFound += OnOwnersFound;
 
-                                        foreach (Property p in propertyList.Properties.GetDataEnumerator())
-                                        {
-                                            citizen.AllProperties.Delete(p.PropertyId);
-                                            citizen.PropertiesByCadastral.Find(cadastral.CadastralId).Delete(p.PropertyId);
-                                        }
+                                        propertyList.UnassignOi(citizen,cadastral);
 
-                                        if (Owners.Count != 0)
-                                        {
-                                            var citizenOwnershipsInterestsForm = new CitizenOwnershipsInterests();
-                                            citizenOwnershipsInterestsForm.Show();
-
-                                            citizenOwnershipsInterestsForm.DataGridOwners.ItemsSource = Owners;
-                                        }
-
-                                        MessageBox.Show("Property list owner removed", "Warning", MessageBoxButton.OK);
                                         Close();
                                     }
                                     else
@@ -111,6 +94,14 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnOwnersFound(object source, OwnersFoundEventArgs e)
+        {
+            var citizenOwnershipsInterestsForm = new CitizenOwnershipsInterests();
+            citizenOwnershipsInterestsForm.Show();
+
+            citizenOwnershipsInterestsForm.DataGridOwners.ItemsSource = e.OwnersCollection;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace MainApplication.Windows
     public partial class ShowpropertyPermanentPeopleForm : Window
     {
         private bool warning = false;
-        public ObservableCollection<Citizen> PermanentPeople { get; set; }
+
         public ShowpropertyPermanentPeopleForm()
         {
             InitializeComponent();
@@ -43,18 +43,11 @@ namespace MainApplication.Windows
                                 if (Int32.TryParse(CheckTextBox(PropertyId.Text), out propertyId))
                                 {
                                     Property property = propertyList.Properties.Find(propertyId);
-                                    PermanentPeople = new ObservableCollection<Citizen>();
                                     if (property != null)
                                     {
-                                        var showPermanentStays = new ShowPropertyPermanentPeople();
-                                        showPermanentStays.Show();
+                                        property.PermanentPeopleFound += OnPermanentPeopleFound;
 
-                                        foreach (Citizen c in property.PermanentPeople.GetDataEnumerator())
-                                        {
-                                            PermanentPeople.Add(c);
-                                        }
-
-                                        showPermanentStays.PermanentsInformation.ItemsSource = PermanentPeople;
+                                        property.FindPermanentPeople();
 
                                         Close();
                                     }
@@ -99,6 +92,14 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnPermanentPeopleFound(object source, PermanentPeopleFoundEventArgs e)
+        {
+            var showPermanentStays = new ShowPropertyPermanentPeople();
+            showPermanentStays.Show();
+
+            showPermanentStays.PermanentsInformation.ItemsSource = e.PermanentPeople;
         }
     }
 }

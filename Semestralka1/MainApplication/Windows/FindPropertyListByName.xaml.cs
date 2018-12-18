@@ -11,9 +11,6 @@ namespace MainApplication.Windows
     public partial class FindPropertyListByName : Window
     {
         private bool warning = false;
-        public PropertyList PropertyList { get; set; }
-        public ObservableCollection<Property> PropertyListProperties { get; set; }
-        public ObservableCollection<OwnershipInterest> PropertyListOwners { get; set; }
         public FindPropertyListByName()
         {
             InitializeComponent();
@@ -38,30 +35,12 @@ namespace MainApplication.Windows
                         {
                             if (!warning)
                             {
-                                PropertyListProperties = new ObservableCollection<Property>();
-                                PropertyListOwners = new ObservableCollection<OwnershipInterest>();
                                 PropertyList propertyList = cadastral.PropertyLists.Find(propertyListId);
                                 if (propertyList != null)
                                 {
-                                    var showPropertyList = new ShowPropertyListById();
-                                    showPropertyList.Show();
+                                    propertyList.PropertyListFound += OnPropertyListFound;
 
-                                    foreach (Property p in propertyList.Properties.GetDataEnumerator())
-                                    {
-                                        PropertyListProperties.Add(p);
-                                    }
-
-                                    foreach (OwnershipInterest o in propertyList.Owners.GetDataEnumerator())
-                                    {
-                                        PropertyListOwners.Add(o);
-                                    }
-
-                                    PropertyList = propertyList;
-
-                                    showPropertyList.PropertyListInformation.Items.Add(PropertyList);
-
-                                    showPropertyList.PropertyListProperties.ItemsSource = PropertyListProperties;
-                                    showPropertyList.PropertyListOwners.ItemsSource = PropertyListOwners;
+                                    propertyList.FindByName();
 
                                     Close();
                                 }
@@ -92,6 +71,17 @@ namespace MainApplication.Windows
                 warning = true;
             }
             return text;
+        }
+
+        private void OnPropertyListFound(object source, PropertyListFoundEventArgs e)
+        {
+            var showPropertyList = new ShowPropertyListById();
+            showPropertyList.Show();
+
+            showPropertyList.PropertyListInformation.Items.Add(e.PropertyList);
+
+            showPropertyList.PropertyListProperties.ItemsSource = e.PropertyListProperties;
+            showPropertyList.PropertyListOwners.ItemsSource = e.PropertyListOwners;
         }
     }
 }
